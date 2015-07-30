@@ -115,7 +115,7 @@
         }
       }
 
-      var cellSize = this.cellSize = width / this.cols;
+      var cellSize = this.cellSize = Math.ceil(width / this.cols);
 
       this.$cells.each(function(index, el) {
         var $target = $(el);

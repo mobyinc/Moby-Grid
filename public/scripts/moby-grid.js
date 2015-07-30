@@ -56,6 +56,21 @@
       $(window).resize(function() {
         self.layout();
       });
+
+      this.addEvents();
+    },
+    addEvents: function() {
+      $('.cell a').on('mouseover', function(e) {
+        this.animateIn($(this));
+      }).on('mouseleave', function(e) {
+        this.animateOut($(this));
+      });
+    },
+    animateIn: function($target) {
+      
+    },
+    animateOut: function($target) {
+      
     },
     test: function(row, col, type) {
       var matrix = this.sizes[type];

@@ -65,25 +65,31 @@ body {
       vertical-align: middle;
     }
 
-    .corner {
+    .overlay {
       position: absolute;
-      content: "";
-      bottom: 0%;
-      right: 0;
-      width: 0;
-      height: 0;
-      border-bottom: 80px solid #fff;
-      border-left: 80px solid transparent;
+      bottom: 550px;
+      right: 550px;
 
-      &::before {
-        display: block;
+      .corner {
         position: absolute;
-        top: 35px;
-        right: 15px;
-        content: "+";
-        color: #2778bc;
-        font-size: 30px;
-        font-weight: bold;
+        content: "";
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        border-bottom: 1000px solid #fff;
+        border-left: 1000px solid transparent;
+
+        &::before {
+          display: block;
+          position: absolute;
+          top: 500px;
+          right: 472px;
+          content: "+";
+          color: #2778bc;
+          font-size: 30px;
+          font-weight: bold;
+        }
       }
     }
 

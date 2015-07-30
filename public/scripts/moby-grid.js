@@ -60,17 +60,26 @@
       this.addEvents();
     },
     addEvents: function() {
+      var self = this;
       $('.cell a').on('mouseover', function(e) {
-        this.animateIn($(this));
+        self.animateIn($(this));
       }).on('mouseleave', function(e) {
-        this.animateOut($(this));
+        self.animateOut($(this));
       });
     },
     animateIn: function($target) {
-      
+      var $overlay = $target.siblings('.overlay');
+      $overlay.animate({
+        bottom: '1000px',
+        right: '1000px'
+      });
     },
     animateOut: function($target) {
-      
+      var $overlay = $target.siblings('.overlay');
+      $overlay.animate({
+        bottom: '550px',
+        right: '550px'
+      });
     },
     test: function(row, col, type) {
       var matrix = this.sizes[type];

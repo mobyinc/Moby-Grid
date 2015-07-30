@@ -43,23 +43,27 @@ body {
       width: 100%;
       padding-left: 15%;
       vertical-align: middle; }
-    .moby-grid .cell .corner {
+    .moby-grid .cell .overlay {
       position: absolute;
-      content: "";
-      bottom: 0%;
-      right: 0;
-      width: 0;
-      height: 0;
-      border-bottom: 80px solid #fff;
-      border-left: 80px solid transparent; }
-      .moby-grid .cell .corner::before {
-        display: block;
+      bottom: 550px;
+      right: 550px; }
+      .moby-grid .cell .overlay .corner {
         position: absolute;
-        top: 35px;
-        right: 15px;
-        content: "+";
-        color: #2778bc;
-        font-size: 30px;
-        font-weight: bold; }
+        content: "";
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        border-bottom: 1000px solid #fff;
+        border-left: 1000px solid transparent; }
+        .moby-grid .cell .overlay .corner::before {
+          display: block;
+          position: absolute;
+          top: 500px;
+          right: 472px;
+          content: "+";
+          color: #2778bc;
+          font-size: 30px;
+          font-weight: bold; }
     .moby-grid .cell.labs {
       background-color: #2778bc; }

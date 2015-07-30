@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  font-family: Helvetica;
 }
 
 .wrapper {
@@ -9,16 +10,84 @@ body {
 }
 
 .moby-grid {
+  position: relative;
   width: 100%;
   background-color: #eee;
 
   .cell {
-    font-family: Helvetica;
+    position: absolute;
+    display: table;
+    overflow: hidden;
     color: white;
 
-    &.small {
+    // sizes
+
+    &[data-type="small"] {
       width: 25%;
     }
+
+    &[data-type="wide"] {
+      width: 50%;
+    }
+
+    &[data-type="large"] {
+      width: 50%;
+    }
+
+    &[data-type="tall"] {
+      width: 25%;
+    }
+
+    // children
+
+    a {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: transparent;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+    }
+
+    .image {
+      width: 100%;
+      height: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    label {
+      display: table-cell;
+      width: 100%;
+      padding-left: 15%;
+      vertical-align: middle;
+    }
+
+    .corner {
+      position: absolute;
+      content: "";
+      bottom: 0%;
+      right: 0;
+      width: 0;
+      height: 0;
+      border-bottom: 80px solid #fff;
+      border-left: 80px solid transparent;
+
+      &::before {
+        display: block;
+        position: absolute;
+        top: 35px;
+        right: 15px;
+        content: "+";
+        color: #2778bc;
+        font-size: 30px;
+        font-weight: bold;
+      }
+    }
+
+    // types
 
     &.labs {
       background-color: #2778bc;

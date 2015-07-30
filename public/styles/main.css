@@ -1,5 +1,6 @@
 body {
-  margin: 0; }
+  margin: 0;
+  font-family: Helvetica; }
 
 .wrapper {
   width: 100%;
@@ -7,12 +8,58 @@ body {
   padding: 0; }
 
 .moby-grid {
+  position: relative;
   width: 100%;
   background-color: #eee; }
   .moby-grid .cell {
-    font-family: Helvetica;
+    position: absolute;
+    display: table;
+    overflow: hidden;
     color: white; }
-    .moby-grid .cell.small {
+    .moby-grid .cell[data-type="small"] {
       width: 25%; }
+    .moby-grid .cell[data-type="wide"] {
+      width: 50%; }
+    .moby-grid .cell[data-type="large"] {
+      width: 50%; }
+    .moby-grid .cell[data-type="tall"] {
+      width: 25%; }
+    .moby-grid .cell a {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: transparent;
+      width: 100%;
+      height: 100%;
+      z-index: 2; }
+    .moby-grid .cell .image {
+      width: 100%;
+      height: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover; }
+    .moby-grid .cell label {
+      display: table-cell;
+      width: 100%;
+      padding-left: 15%;
+      vertical-align: middle; }
+    .moby-grid .cell .corner {
+      position: absolute;
+      content: "";
+      bottom: 0%;
+      right: 0;
+      width: 0;
+      height: 0;
+      border-bottom: 80px solid #fff;
+      border-left: 80px solid transparent; }
+      .moby-grid .cell .corner::before {
+        display: block;
+        position: absolute;
+        top: 35px;
+        right: 15px;
+        content: "+";
+        color: #2778bc;
+        font-size: 30px;
+        font-weight: bold; }
     .moby-grid .cell.labs {
       background-color: #2778bc; }

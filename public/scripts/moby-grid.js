@@ -68,17 +68,93 @@
       });
     },
     animateIn: function($target) {
-      var $overlay = $target.siblings('.overlay');
-      $overlay.animate({
-        bottom: '1000px',
-        right: '1000px'
+      var $el = $target.parent();
+      var $overlay = $el.find('.overlay');
+      var $content = $el.find('.content');
+      var $overlayContent = $el.find('.overlay-content');
+      var $plus = $el.find('.plus');
+
+      $overlay.stop().transition({
+        bottom: '0px',
+        right: '0px',
+        duration: 800
+      });
+
+      // slide
+      // $content.transition({
+      //   top: '-100%',
+      //   left: '-100%'
+      // });
+      // matrix(1, -0.2, -0.2, 1, 0, 0)
+
+      // $content.transition({
+      //   x: -250,
+      //   y: -250,
+      //   skewX: '45deg',
+      //   skeyY: '45deg',
+      //   scale: 0.8,
+      //   duration: 1500
+      // });
+
+      $plus.stop().transition({
+        opacity: 0.0
+      });
+
+      $overlayContent.css({
+        display: 'block'
+      });
+
+      $overlayContent.stop().transition({
+        marginTop: '0px',
+        delay: 300
+      });
+
+      $overlayContent.stop().find('img').transition({
+        opacity: 1.0,
+        delay: 300
+      });
+
+      $overlayContent.stop().find('label').transition({
+        opacity: 1.0,
+        delay: 400
       });
     },
     animateOut: function($target) {
-      var $overlay = $target.siblings('.overlay');
-      $overlay.animate({
-        bottom: '550px',
-        right: '550px'
+      var $el = $target.parent();
+      var $overlay = $el.find('.overlay');
+      var $content = $el.find('.content');
+      var $overlayContent = $el.find('.overlay-content');
+      var $plus = $el.find('.plus');
+
+      $plus.transition({
+        opacity: 1.0,
+        delay: 400
+      });
+
+      $overlayContent.find('img, label').transition({
+        opacity: 0.0
+      });
+
+      // $content.transition({
+      //   x: 0,
+      //   y: 0,
+      //   skewX: '0deg',
+      //   skeyY: '0deg',
+      //   scale: 1,
+      //   delay: 400,
+      //   duration: 800
+      // });
+
+      $overlay.transition({
+        bottom: '-460px',
+        right: '-460px',
+        delay: 400,
+        duration: 700
+      });
+
+      $overlayContent.transition({
+        marginTop: '-15px',
+        delay: 500
       });
     },
     test: function(row, col, type) {

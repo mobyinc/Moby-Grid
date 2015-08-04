@@ -13,10 +13,12 @@ body {
   position: relative;
   width: 100%;
   background-color: #eee;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
 
   .cell {
     position: absolute;
-    display: table;
     overflow: hidden;
     color: white;
 
@@ -50,25 +52,62 @@ body {
       z-index: 2;
     }
 
-    .image {
-      width: 100%;
-      height: 100%;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
+    .overlay-content {
+      display: none;
+      position: absolute;
+      z-index: 1;
+      top: 50%;
+      transform: translateY(-50%);
+      padding-right: 15%;
+      padding-left: 15%;
+      margin-top: -15px;
+
+      label {
+        display: block;
+        opacity: 0.0;
+        color: #333;
+        margin-top: 10px;
+      }
+
+      img {
+        display: block;
+        opacity: 0.0;
+        margin: auto;
+        max-width: 44%;
+      }
     }
 
-    label {
-      display: table-cell;
+    .content {
+      display: table;
+      position: absolute;
       width: 100%;
-      padding-left: 15%;
-      vertical-align: middle;
+      height: 100%;
+      background-color: #fff;
+
+      .image {
+        width: 100%;
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      label {
+        display: table-cell;
+        width: 100%;
+        top: 50%;
+        padding-left: 15%;
+        padding-right: 15%;
+        vertical-align: middle;
+      }
     }
 
     .overlay {
       position: absolute;
-      bottom: 550px;
-      right: 550px;
+      width: 1000px;
+      height: 1000px;
+      bottom: -460px;
+      right: -460px;
 
       .corner {
         position: absolute;
@@ -80,7 +119,7 @@ body {
         border-bottom: 1000px solid #fff;
         border-left: 1000px solid transparent;
 
-        &::before {
+        .plus {
           display: block;
           position: absolute;
           top: 500px;
@@ -96,7 +135,9 @@ body {
     // types
 
     &.labs {
-      background-color: #2778bc;
+      .content {
+        background-color: #2778bc;
+      }
     }
   }
 }

@@ -10,10 +10,12 @@ body {
 .moby-grid {
   position: relative;
   width: 100%;
-  background-color: #eee; }
+  background-color: #eee;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d; }
   .moby-grid .cell {
     position: absolute;
-    display: table;
     overflow: hidden;
     color: white; }
     .moby-grid .cell[data-type="small"] {
@@ -32,21 +34,50 @@ body {
       width: 100%;
       height: 100%;
       z-index: 2; }
-    .moby-grid .cell .image {
+    .moby-grid .cell .overlay-content {
+      display: none;
+      position: absolute;
+      z-index: 1;
+      top: 50%;
+      transform: translateY(-50%);
+      padding-right: 15%;
+      padding-left: 15%;
+      margin-top: -15px; }
+      .moby-grid .cell .overlay-content label {
+        display: block;
+        opacity: 0.0;
+        color: #333;
+        margin-top: 10px; }
+      .moby-grid .cell .overlay-content img {
+        display: block;
+        opacity: 0.0;
+        margin: auto;
+        max-width: 44%; }
+    .moby-grid .cell .content {
+      display: table;
+      position: absolute;
       width: 100%;
       height: 100%;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover; }
-    .moby-grid .cell label {
-      display: table-cell;
-      width: 100%;
-      padding-left: 15%;
-      vertical-align: middle; }
+      background-color: #fff; }
+      .moby-grid .cell .content .image {
+        width: 100%;
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover; }
+      .moby-grid .cell .content label {
+        display: table-cell;
+        width: 100%;
+        top: 50%;
+        padding-left: 15%;
+        padding-right: 15%;
+        vertical-align: middle; }
     .moby-grid .cell .overlay {
       position: absolute;
-      bottom: 550px;
-      right: 550px; }
+      width: 1000px;
+      height: 1000px;
+      bottom: -460px;
+      right: -460px; }
       .moby-grid .cell .overlay .corner {
         position: absolute;
         content: "";
@@ -56,7 +87,7 @@ body {
         height: 0;
         border-bottom: 1000px solid #fff;
         border-left: 1000px solid transparent; }
-        .moby-grid .cell .overlay .corner::before {
+        .moby-grid .cell .overlay .corner .plus {
           display: block;
           position: absolute;
           top: 500px;
@@ -65,5 +96,5 @@ body {
           color: #2778bc;
           font-size: 30px;
           font-weight: bold; }
-    .moby-grid .cell.labs {
+    .moby-grid .cell.labs .content {
       background-color: #2778bc; }

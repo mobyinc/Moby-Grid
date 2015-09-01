@@ -15,6 +15,10 @@
     <title>Moby Homepage Playground</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">    
     <link rel="stylesheet" href="styles.css">
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="http://underscorejs.org/underscore-min.js"></script>
+    <script src="http://imagesloaded.desandro.com/imagesloaded.pkgd.min.js"></script>
+    <script src="skrollr.min.js"></script>
     <script src="scripts.js"></script>
     
     <!-- Fun Fonts! -->
@@ -30,13 +34,13 @@
       </div>
       
       <!-- Since the bubbles have to be absolute positioned based on % we will need to set the container's height (manually) to envelope all of the bubbles. -->
-      <div id="grid_container" style="height:2500px;" data-tablet-height="2000" data-phone-height="2000">
+      <div id="grid_container" style="height:2500px;" data-tablet-height="2000" data-phone-height="2000" data-0="background-color:rgb(0,0,0)" data-end="background-color:rgb(255,255,255)">
         
         <!-- Each of the bubbles has specific location (% based), z-index, and momentum info. Sizes are shared based on the class/type of bubble it is. Maybe we store the momentum & responsive stuff in data attributes? (Only put these on this 1st one... can add more later) -->
         <a href="#" 
           class="bubble case-study" 
-          style="top:0; left:50%; z-index: 5;" 
-          data-momentum="1" 
+          style="top:0; left:50%; z-index: 5; background: url(http://lorempixel.com/505/505/abstract)"
+          data-momentum="0.4" 
           data-tablet-top="0"
           data-tablet-left="50"
           data-tablet-z="4"
@@ -55,8 +59,9 @@
         </a>
         
         <a href="#" 
+          data-momentum="0.5" 
           class="bubble product"
-          style="top:6%; left:1%; z-index: 4;"
+          style="top:6%; left:1%; z-index: 4; background: url(http://lorempixel.com/400/400/sports)"
         >
           <div class="b_content">
             <div class="vert_align">Product Bubble</div>
@@ -67,8 +72,9 @@
         </a>
         
         <a href="#" 
+          data-momentum="0.2" 
           class="bubble product"
-          style="top:16%; left:25%; z-index: 3;"
+          style="top:16%; left:25%; z-index: 3; background: url(http://lorempixel.com/400/400/city)"
         >
           <div class="b_content">
             <div class="vert_align">Product Bubble</div>
@@ -79,8 +85,9 @@
         </a>
         
         <a href="#" 
+          data-momentum="0.1" 
           class="bubble blog"
-          style="top:23%; left:0%; z-index: 3;"
+          style="top:23%; left:0%; z-index: 3; background: url(http://lorempixel.com/260/260/people)"
         >
           <div class="b_content">
             <div class="vert_align">Blog Bubble</div>
@@ -91,8 +98,9 @@
         </a>
         
         <a href="#" 
+          data-momentum="0.5" 
           class="bubble blog"
-          style="top:23%; left:58%; z-index: 4;"
+          style="top:23%; left:58%; z-index: 4; background: url(http://lorempixel.com/260/260/transport)"
         >
           <div class="b_content">
             <div class="vert_align">Blog Bubble</div>
@@ -103,8 +111,9 @@
         </a>
         
         <a href="#" 
+          data-momentum="0.4" 
           class="bubble case-study" 
-          style="top:30.25%; left:18.5%; z-index: 5;" 
+          style="top:30.25%; left:18.5%; z-index: 5; background: url(http://lorempixel.com/505/505/animals)"
         >
           <div class="b_content">
             <div class="vert_align">Case Study Bubble</div>
@@ -115,6 +124,7 @@
         </a>
         
         <a href="#" 
+          data-momentum="0.4" 
           class="bubble blog"
           style="top:31.5%; left:75%; z-index: 4;"
         >
@@ -127,8 +137,9 @@
         </a>
         
         <a href="#" 
+          data-momentum="0.2" 
           class="bubble job optional"
-          style="top:42%; left:69%; z-index: 2;"
+          style="top:42%; left:69%; z-index: 2; background: url(http://lorempixel.com/205/205/food)"
         >
           <div class="b_content">
             <div class="vert_align">Job Bubble</div>
@@ -139,8 +150,9 @@
         </a>
         
         <a href="#" 
+          data-momentum="0.3" 
           class="bubble job optional"
-          style="top:45%; left:3%; z-index: 2;"
+          style="top:45%; left:3%; z-index: 2; background: url(http://lorempixel.com/205/205/nature)"
         >
           <div class="b_content">
             <div class="vert_align">Job Bubble</div>
@@ -151,8 +163,9 @@
         </a>
         
         <a href="#" 
+          data-momentum="0.1" 
           class="bubble product"
-          style="top:49.5%; left:45%; z-index: 3;"
+          style="top:49.5%; left:45%; z-index: 3; background: url(http://lorempixel.com/400/400/business)"
         >
           <div class="b_content">
             <div class="vert_align">Product Bubble</div>
@@ -163,6 +176,7 @@
         </a>
         
         <a href="#" 
+          data-momentum="0.3" 
           class="bubble case-study" 
           style="top:52.5%; left:0%; z-index: 5;" 
         >
@@ -175,8 +189,9 @@
         </a>
         
         <a href="#" 
+          data-momentum="0.2" 
           class="bubble blog"
-          style="top:58.5%; left:75%; z-index: 4;"
+          style="top:58.5%; left:75%; z-index: 4; background: url(http://lorempixel.com/260/260/nightlife)"
         >
           <div class="b_content">
             <div class="vert_align">Blog Bubble</div>
@@ -187,8 +202,9 @@
         </a>
         
         <a href="#" 
+          data-momentum="0.1" 
           class="bubble case-study" 
-          style="top:65%; left:42%; z-index: 5;"
+          style="top:65%; left:42%; z-index: 5; background: url(http://lorempixel.com/505/505/cats)"
         >
           <div class="b_content">
             <div class="vert_align">Case Study Bubble</div>
@@ -199,8 +215,9 @@
         </a>
         
         <a href="#" 
+          data-momentum="0.2" 
           class="bubble product"
-          style="top:74.25%; left:10%; z-index: 3;"
+          style="top:74.25%; left:10%; z-index: 3; background: url(http://lorempixel.com/400/400/fashion)"
         >
           <div class="b_content">
             <div class="vert_align">Product Bubble</div>
@@ -211,8 +228,9 @@
         </a>
         
         <a href="#" 
+          data-momentum="0.3" 
           class="bubble blog"
-          style="top:86%; left:40%; z-index: 4;"
+          style="top:86%; left:40%; z-index: 4; background: url(http://lorempixel.com/260/260/technics)"
         >
           <div class="b_content">
             <div class="vert_align">Blog Bubble</div>
@@ -223,6 +241,7 @@
         </a>
         
         <a href="#" 
+          data-momentum="0.2" 
           class="bubble job optional"
           style="top:90%; left:19%; z-index: 3;"
         >
@@ -235,8 +254,9 @@
         </a>
         
         <a href="#" 
+          data-momentum="0.2" 
           class="bubble cta" 
-          style="top:85%; left:63%; z-index: 3;" 
+          style="top:85%; left:63%; z-index: 3; background: url(http://lorempixel.com/800/600/animals)"
         >
           <div class="b_content">
             <div class="vert_align">CTA Bubble</div>

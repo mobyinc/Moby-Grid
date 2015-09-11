@@ -18,12 +18,11 @@
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="http://underscorejs.org/underscore-min.js"></script>
     <script src="http://imagesloaded.desandro.com/imagesloaded.pkgd.min.js"></script>
-    <script src="velocity.min.js"></script>
     <script src="jquery-waft.js"></script>
 
     <script type="text/javascript">
       $(document).ready(function() {
-        $('#grid_container').waft({ childSelector: '.bubble', fpsElement: $('#fps') });
+        $('#grid_container').waft({ childSelector: '.bubble:not(.bkgrd)', fpsElement: $('#fps') });
       });
     </script>
 
@@ -295,39 +294,39 @@
         </a>
 
         <div
-          class="bubble bkgrd_med"
+          class="bubble bkgrd_med bkgrd"
           style="top:7%; left:32%; z-index: 1;"
         ></div>
         <div
-          class="bubble bkgrd_med"
+          class="bubble bkgrd_med bkgrd"
           style="top:15%; left:54%; z-index: 1;"
         ></div>
         <div
-          class="bubble bkgrd_med"
+          class="bubble bkgrd_med bkgrd"
           style="top:31%; left:57%; z-index: 1;"
         ></div>
         <div
-          class="bubble bkgrd_med"
+          class="bubble bkgrd_med bkgrd"
           style="top:47%; left:70%; z-index: 1;"
         ></div>
         <div
-          class="bubble bkgrd_med"
+          class="bubble bkgrd_med bkgrd"
           style="top:47%; left:30%; z-index: 1;"
         ></div>
         <div
-          class="bubble bkgrd_med"
+          class="bubble bkgrd_med bkgrd"
           style="top:61%; left:40%; z-index: 1;"
         ></div>
         <div
-          class="bubble bkgrd_med"
+          class="bubble bkgrd_med bkgrd"
           style="top:69%; left:1%; z-index: 1;"
         ></div>
         <div
-          class="bubble bkgrd_med"
+          class="bubble bkgrd_med bkgrd"
           style="top:80%; left:40%; z-index: 1;"
         ></div>
         <div
-          class="bubble bkgrd_med"
+          class="bubble bkgrd_med bkgrd"
           style="top:78%; left:74%; z-index: 1;"
         ></div>
         <div class="bubble bkgrd_sm optional"

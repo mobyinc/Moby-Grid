@@ -27,13 +27,15 @@
     this.scrollPeriod = 5;
     this.scrollSMA = simpleMovingAverager(this.scrollPeriod);
     this.smoothScrollVelocity = 0;
-    this.friction = 0.6;
+    this.friction = 0.8;
+    this.elasticForce = 2.0;
     this.animFrame =  window.requestAnimationFrame       ||
                       window.webkitRequestAnimationFrame ||
                       window.mozRequestAnimationFrame    ||
                       window.oRequestAnimationFrame      ||
                       window.msRequestAnimationFrame     ||
                       null ;
+
     this.init();
   };
 
@@ -63,10 +65,11 @@
       var self = this;
 
       self.$children.each(function(index, el) {
-        var $el = $(el);
+        var tmp = $(el);
         var node = {
-          $el: $el,
-          initialTop: parseFloat($el.css('top')),
+          $el: tmp,
+          initialPos: parseFloat(tmp.css('top')),
+          pos: 0,
           delta: 0,
           velocity: 0
         };
@@ -113,7 +116,44 @@
 
       if (this.$fpsElement !== null) this.updateFPS(delta);
 
+      // scroll velocity friction
       this.smoothScrollVelocity *= this.friction * (1 - s);
+      var force = this.smoothScrollVelocity * 0.01;
+
+      for (var i=0; i<this.nodes.length; i++) {
+        var node = this.nodes[i];
+        // apply force
+        node.velocity += force;
+
+        var dist = Math.abs(node.delta);
+        var mod = dist * 0.1;
+        // apply elastic resistance
+        if (node.delta > 0) {
+          node.velocity -= this.elasticForce * s * mod;
+          if (node.delta + node.velocity < 0) {
+            node.delta = 0;
+            node.velocity = 0;
+          }
+        } else if (node.delta < 0) {
+          node.velocity += this.elasticForce * s * mod;
+          if (node.delta + node.velocity > 0) {
+            node.delta = 0;
+            node.velocity = 0;
+          }
+        }
+
+        node.delta += node.velocity;
+
+        // update position
+        node.pos = node.initialPos + node.delta;
+      }
+    },
+    update: function() {
+      // position elements
+      for (var i=0; i<this.nodes.length; i++) {
+        var node = this.nodes[i];
+        node.$el.css({ top: node.pos });
+      }
     },
     updateFPS: function(delta) {
       this.fpsCounter++;
@@ -125,9 +165,6 @@
         $('#scrollVel').text(Math.round(this.smoothScrollVelocity));
         $('#scrollVelBar').css({ width: Math.abs(this.smoothScrollVelocity) * 2 });
       }
-    },
-    update: function() {
-      // position elements
     }
   });
 

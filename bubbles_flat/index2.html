@@ -1,0 +1,341 @@
+
+<!-- TODOS!!!!!!!!!!!!!
+
+  - Have them animate their loads in a fun way. We'll need to make sure they pre-load imagery and all that fancyness.
+  - Add in momentum when the user scrolls. I couldn't find an example really of this, but I think we covered the basic concept. Rough it in and we'll see if we like it or need to go a different route :)
+  - add in ability for the layout to be responsive. I just used data attributes cause it seems like the right thing to do, but totally can be something else if it's better for you.
+
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Moby Homepage Playground</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="http://underscorejs.org/underscore-min.js"></script>
+    <script src="http://imagesloaded.desandro.com/imagesloaded.pkgd.min.js"></script>
+    <script src="velocity.min.js"></script>
+    <script src="jquery-waft.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('#grid_container').waft({ childSelector: '.bubble', fpsElement: $('#fps') });
+      });
+    </script>
+
+    <!-- Fun Fonts! -->
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+    <style>
+      #fps {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        font-size: 14px;
+      }
+      #scrollVel {
+        position: fixed;
+        top: 20px;
+        left: 50px;
+        font-size: 14px;
+      }
+      #scrollVelBar {
+        position: fixed;
+        top: 20px;
+        left: 75px;
+        background-color: blue;
+        height: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="fps">???</div>
+    <div id="scrollVel">???</div>
+    <div id="scrollVelBar"></div>
+    <div id="main_pg">
+      <div class="pg_intro">
+        <h1>Man this grid is pretty awesome</h1>
+        <p><b>If I had a dime</b> for every time I wanted to make something but had to mock up a prototype before hand... well... I'd probably only have like $1 worth of dimes, but the saying comes from a time when having a dollar was pretty bitchin'.</p>
+      </div>
+
+      <!-- Since the bubbles have to be absolute positioned based on % we will need to set the container's height (manually) to envelope all of the bubbles. -->
+      <div id="grid_container" style="height:2500px;" data-tablet-height="2000" data-phone-height="2000" data-0="background-color:rgb(0,0,0)" data-end="background-color:rgb(255,255,255)">
+
+        <!-- Each of the bubbles has specific location (% based), z-index, and momentum info. Sizes are shared based on the class/type of bubble it is. Maybe we store the momentum & responsive stuff in data attributes? (Only put these on this 1st one... can add more later) -->
+        <a href="#"
+          class="bubble case-study"
+          style="top:0; left:50%; z-index: 5;"
+          data-momentum="0.4"
+          data-tablet-top="0"
+          data-tablet-left="50"
+          data-tablet-z="4"
+          data-tablet-momentum="1"
+          data-phone-top="0"
+          data-phone-left="50"
+          data-phone-z="4"
+          data-phone-momentum="1"
+        >
+          <div class="b_content">
+            <div class="vert_align">Case Study Bubble</div>
+          </div>
+          <div class="b_content hover">
+            <div class="vert_align">GO!</div>
+          </div>
+        </a>
+
+        <a href="#"
+          data-momentum="0.5"
+          class="bubble product"
+          style="top:6%; left:1%; z-index: 4;"
+        >
+          <div class="b_content">
+            <div class="vert_align">Product Bubble</div>
+          </div>
+          <div class="b_content hover">
+            <div class="vert_align">GO!</div>
+          </div>
+        </a>
+
+        <a href="#"
+          data-momentum="0.2"
+          class="bubble product"
+          style="top:16%; left:25%; z-index: 3;"
+        >
+          <div class="b_content">
+            <div class="vert_align">Product Bubble</div>
+          </div>
+          <div class="b_content hover">
+            <div class="vert_align">GO!</div>
+          </div>
+        </a>
+
+        <a href="#"
+          data-momentum="0.1"
+          class="bubble blog"
+          style="top:23%; left:0%; z-index: 3;"
+        >
+          <div class="b_content">
+            <div class="vert_align">Blog Bubble</div>
+          </div>
+          <div class="b_content hover">
+            <div class="vert_align">GO!</div>
+          </div>
+        </a>
+
+        <a href="#"
+          data-momentum="0.5"
+          class="bubble blog"
+          style="top:23%; left:58%; z-index: 4;"
+        >
+          <div class="b_content">
+            <div class="vert_align">Blog Bubble</div>
+          </div>
+          <div class="b_content hover">
+            <div class="vert_align">GO!</div>
+          </div>
+        </a>
+
+        <a href="#"
+          data-momentum="0.4"
+          class="bubble case-study"
+          style="top:30.25%; left:18.5%; z-index: 5;"
+        >
+          <div class="b_content">
+            <div class="vert_align">Case Study Bubble</div>
+          </div>
+          <div class="b_content hover">
+            <div class="vert_align">GO!</div>
+          </div>
+        </a>
+
+        <a href="#"
+          data-momentum="0.4"
+          class="bubble blog"
+          style="top:31.5%; left:75%; z-index: 4;"
+        >
+          <div class="b_content">
+            <div class="vert_align">Blog Bubble</div>
+          </div>
+          <div class="b_content hover">
+            <div class="vert_align">GO!</div>
+          </div>
+        </a>
+
+        <a href="#"
+          data-momentum="0.2"
+          class="bubble job optional"
+          style="top:42%; left:69%; z-index: 2;"
+        >
+          <div class="b_content">
+            <div class="vert_align">Job Bubble</div>
+          </div>
+          <div class="b_content hover">
+            <div class="vert_align">GO!</div>
+          </div>
+        </a>
+
+        <a href="#"
+          data-momentum="0.3"
+          class="bubble job optional"
+          style="top:45%; left:3%; z-index: 2;"
+        >
+          <div class="b_content">
+            <div class="vert_align">Job Bubble</div>
+          </div>
+          <div class="b_content hover">
+            <div class="vert_align">GO!</div>
+          </div>
+        </a>
+
+        <a href="#"
+          data-momentum="0.1"
+          class="bubble product"
+          style="top:49.5%; left:45%; z-index: 3;"
+        >
+          <div class="b_content">
+            <div class="vert_align">Product Bubble</div>
+          </div>
+          <div class="b_content hover">
+            <div class="vert_align">GO!</div>
+          </div>
+        </a>
+
+        <a href="#"
+          data-momentum="0.3"
+          class="bubble case-study"
+          style="top:52.5%; left:0%; z-index: 5;"
+        >
+          <div class="b_content">
+            <div class="vert_align">Case Study Bubble</div>
+          </div>
+          <div class="b_content hover">
+            <div class="vert_align">GO!</div>
+          </div>
+        </a>
+
+        <a href="#"
+          data-momentum="0.2"
+          class="bubble blog"
+          style="top:58.5%; left:75%; z-index: 4;"
+        >
+          <div class="b_content">
+            <div class="vert_align">Blog Bubble</div>
+          </div>
+          <div class="b_content hover">
+            <div class="vert_align">GO!</div>
+          </div>
+        </a>
+
+        <a href="#"
+          data-momentum="0.1"
+          class="bubble case-study"
+          style="top:65%; left:42%; z-index: 5;"
+        >
+          <div class="b_content">
+            <div class="vert_align">Case Study Bubble</div>
+          </div>
+          <div class="b_content hover">
+            <div class="vert_align">GO!</div>
+          </div>
+        </a>
+
+        <a href="#"
+          data-momentum="0.2"
+          class="bubble product"
+          style="top:74.25%; left:10%; z-index: 3;"
+        >
+          <div class="b_content">
+            <div class="vert_align">Product Bubble</div>
+          </div>
+          <div class="b_content hover">
+            <div class="vert_align">GO!</div>
+          </div>
+        </a>
+
+        <a href="#"
+          data-momentum="0.3"
+          class="bubble blog"
+          style="top:86%; left:40%; z-index: 4;"
+        >
+          <div class="b_content">
+            <div class="vert_align">Blog Bubble</div>
+          </div>
+          <div class="b_content hover">
+            <div class="vert_align">GO!</div>
+          </div>
+        </a>
+
+        <a href="#"
+          data-momentum="0.2"
+          class="bubble job optional"
+          style="top:90%; left:19%; z-index: 3;"
+        >
+          <div class="b_content">
+            <div class="vert_align">Job Bubble</div>
+          </div>
+          <div class="b_content hover">
+            <div class="vert_align">GO!</div>
+          </div>
+        </a>
+
+        <a href="#"
+          data-momentum="0.2"
+          class="bubble cta"
+          style="top:85%; left:63%; z-index: 3;"
+        >
+          <div class="b_content">
+            <div class="vert_align">CTA Bubble</div>
+          </div>
+          <div class="b_content hover">
+            <div class="vert_align">GO!</div>
+          </div>
+        </a>
+
+        <div
+          class="bubble bkgrd_med"
+          style="top:7%; left:32%; z-index: 1;"
+        ></div>
+        <div
+          class="bubble bkgrd_med"
+          style="top:15%; left:54%; z-index: 1;"
+        ></div>
+        <div
+          class="bubble bkgrd_med"
+          style="top:31%; left:57%; z-index: 1;"
+        ></div>
+        <div
+          class="bubble bkgrd_med"
+          style="top:47%; left:70%; z-index: 1;"
+        ></div>
+        <div
+          class="bubble bkgrd_med"
+          style="top:47%; left:30%; z-index: 1;"
+        ></div>
+        <div
+          class="bubble bkgrd_med"
+          style="top:61%; left:40%; z-index: 1;"
+        ></div>
+        <div
+          class="bubble bkgrd_med"
+          style="top:69%; left:1%; z-index: 1;"
+        ></div>
+        <div
+          class="bubble bkgrd_med"
+          style="top:80%; left:40%; z-index: 1;"
+        ></div>
+        <div
+          class="bubble bkgrd_med"
+          style="top:78%; left:74%; z-index: 1;"
+        ></div>
+        <div class="bubble bkgrd_sm optional"
+          style="top:20%; left:16%; z-index: 0;"
+        ></div>
+
+      </div>
+    </div>
+
+  </body>
+</html>
